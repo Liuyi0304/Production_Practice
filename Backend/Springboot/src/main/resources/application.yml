@@ -1,0 +1,47 @@
+server:
+  port: 7877
+  tomcat:
+    # 连接超时设置（单位：毫秒）
+    connection-timeout: 300000
+    # 保持活动请求的超时
+    keep-alive-timeout: 300000
+    # 最大线程数
+    threads:
+      max: 200
+  max-http-request-header-size: 64KB
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/sign_language?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  application:
+    name: sign_language
+  web:
+    resources:
+      static-locations: classpath:/static/
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: org.example.sign_language.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+
+deepseek:
+  api:
+    key: sk-e9f0b3b2b3184e1db62f45993b23ec0b
+    url: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
+
+app:
+  video:
+    temp-dir: ./temp
+    output-dir: ./output
+    ffmpeg-path: C://UserFiles//environment//ffmpeg//bin//ffmpeg.exe # Windows: C:/ffmpeg/bin/ffmpeg.exe
+    max-retries: 3
+    timeout: 30000 # 30秒
+
